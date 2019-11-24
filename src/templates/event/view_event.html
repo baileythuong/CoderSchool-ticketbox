@@ -1,0 +1,27 @@
+{% include "./util/navbar.html"%}
+<img src="{{event.event_banner}}" class="img-fluid" />
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h1 class="display-4">{{event.event_name}}</h1>
+        <p class="lead">
+          {{event.event_description}}
+        </p>
+      </div>
+      <div class="col">
+          <h4 class="">
+            <i class="fas fa-map-marker-alt"></i> {{event.event_address}}
+          </h4>
+          <h4><i class="far fa-calendar-alt"></i> {{event.event_time}}</h4>
+          <h4 class="">₫{{event.ticket_price}}</h4>
+        <form action="buy_ticket">
+          <button type="submit" class="btn btn-block btn-lg btn-success">
+            Buy Ticket
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% include "./util/footer.html"%}

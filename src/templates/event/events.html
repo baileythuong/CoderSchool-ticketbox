@@ -1,0 +1,49 @@
+{% include "./util/navbar.html"%}
+
+{{ moment.include_jquery() }}
+{{ moment.include_moment() }}
+
+
+<div class="container pt-5 d-flex">
+        <div class="pt-5">
+          {% with messages = get_flashed_messages(with_categories=true) %}
+          <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+          {% if messages %} {% for category, message in messages %}
+          <div class="alert alert-{{ category }} alert-dismissible mt-2" role="alert">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="alert"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <!-- <strong>Title</strong> -->
+            {{ message }}
+          </div>
+          {% endfor %} {% endif %} {% endwith %}
+
+          <div class="card-deck">
+          {% for event in events %}
+          <div class="card mb-3">
+              <img src="{{event.event_banner}}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <div class="d-flex justify-content-between">
+                <h5 class="card-title mb-0">{{event.event_name}}</h5>
+                <p class="card-title">₫{{event.ticket_price}}</p>
+                </div>
+                <div class="d-flex justify-content-between">
+                <small class="card-title"><i class="fas fa-map-marker-alt"></i> {{event.event_address}}</small>
+                <small><i class="far fa-calendar-alt"></i> {{moment(event.event_time).format('LL')}}</small>
+                </div>
+                <p class="card-text">{{event.event_description}}</p>
+                <div class="container d-flex justify-content-end">
+                  <a href="{{url_for('event_blueprint.event_detail', id=event.id)}}" class="btn btn-success">Details</a>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+          </div>
+{% include "./util/footer.html"%}

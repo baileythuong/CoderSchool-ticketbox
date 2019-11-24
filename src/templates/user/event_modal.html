@@ -1,0 +1,109 @@
+{% block modal %}
+<div
+class="modal fade"
+id="exampleModal"
+tabindex="-1"
+role="dialog"
+aria-labelledby="exampleModalLabel"
+aria-hidden="true"
+>
+<div
+  class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+  role="document"
+>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">
+        New Event
+      </h5>
+      <button
+        type="button"
+        class="close"
+        data-dismiss="modal"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form method="POST" action="/event/events">
+        <div class="form-group">
+          <label>Name an event</label>
+          <input
+            required
+            type="text"
+            class="form-control"
+            name="event_name"
+          />
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <input
+              required
+              type="text"
+              class="form-control"
+              name="event_description"
+            />
+          </div>
+        <div class="form-group">
+          <label>Banner</label>
+          <input
+            required
+            type="text"
+            class="form-control"
+            name="event_banner"
+          />
+        </div>
+        <div class="form-group">
+          <label>Address</label>
+          <input
+            required
+            type="text"
+            class="form-control"
+            name="event_address"
+          />
+        </div>
+        <div class="form-group">
+          <label>Date</label>
+          <input
+            required
+            type="date"
+            class="form-control"
+            name="event_time"
+          />
+        </div>
+        <div class="form-group">
+          <label>Ticket price</label>
+          <input
+            required
+            type="number"
+            step="1000"
+            class="form-control"
+            name="ticket_price"
+          />
+        </div>
+        <div class="form-group">
+            <label>Stock</label>
+            <input
+              required
+              type="number"
+              step="1"
+              class="form-control"
+              name="ticket_stock"
+            />
+          </div>
+        <div class="form-group form-check">
+          <input type="checkbox" class="form-check-input" />
+          <label class="form-check-label" required
+            >I agree to the terms and conditions.</label
+          >
+        </div>
+        <button type="submit" class="btn btn-success pull-right">
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock modal %}

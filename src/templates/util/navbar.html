@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <!-- <link rel="stylesheet" href="../../static/styles.css"> -->
+    <title>TicketBox</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="/event/events">
+        <img
+          src="https://static.ticketbox.vn/site/global/content-v2/img/ticketbox-logo-100.png?v1"
+          alt="TicketBox"
+          width="30"
+          height="30"
+        />
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav d-flex justify-content-start">
+          {% if current_user.is_anonymous%}
+          <li class="nav-item active">
+            <a class="nav-link" href="/user/login">Login</a>
+          </li>
+          {% else %}
+          <li class="nav-item active">
+            <a class="nav-link" href="/user/logout">Logout</a>
+          </li>
+          {% endif %} {% if current_user.is_authenticated %}
+          <li class="nav-item active">
+            <a class="nav-link" href="/event/events">Events</a>
+          </li>
+          <li class="nav-item dropdown active">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              {{current_user.username}}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/user">Information</a>
+               <!-- <div class="dropdown-divider"></div>
+               <a class="dropdown-item" href="#">Something else here</a> -->
+            </div>
+          </li>
+          {% endif %}
+        </ul>
+        <div class="navbar-nav justify-content-end">
+          <button
+            type="button"
+            class="btn btn-success mx-2"
+            data-toggle="modal"
+            data-target="#exampleModal"
+          >
+            Add Event
+          </button>
+        </div>
+        {% include "./user/event_modal.html"%}
+      </div>
+    </nav>
+  </body>
+</html>

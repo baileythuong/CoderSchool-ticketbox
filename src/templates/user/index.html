@@ -1,0 +1,26 @@
+{% include "./util/navbar.html"%}
+<div class="container pt-5 d-flex justify-content-center">
+        <div class="pt-5">
+          {% with messages = get_flashed_messages(with_categories=true) %}
+          <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+          {% if messages %} {% for category, message in messages %}
+          <div class="alert alert-{{ category }} alert-dismissible mt-2" role="alert">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="alert"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <!-- <strong>Title</strong> -->
+            {{ message }}
+          </div>
+          {% endfor %} {% endif %} {% endwith %}
+
+{% if current_user.is_authenticated%}
+<p class="lead mb-0">Hello, {{current_user.username}}!</p>
+<small class="text-muted">Your registered email address is: {{current_user.email}}</small>
+{% endif %}
+</div>
+{% include "./util/footer.html"%}
